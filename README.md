@@ -1,6 +1,3 @@
 # auto-versioning-test
 
-testing
-test
-test
-test
+A minor change
