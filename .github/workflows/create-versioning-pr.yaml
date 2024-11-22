@@ -23,7 +23,7 @@ jobs:
           curl -kL -o - https://github.com/intuit/auto/releases/download/v11.3.0/auto-linux.gz | gunzip > ${{ runner.temp }}/auto
           chmod +x ${{ runner.temp }}/auto
 
-      - run: ${{ runner.temp }}/auto shipit --dry-run --quiet
+      - run: ${{ runner.temp }}/auto shipit --dry-run
 
       - name: Get next release number
         id: next_release
