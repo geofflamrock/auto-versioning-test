@@ -32,7 +32,12 @@ jobs:
 
       - name: Update changelog
         id: update_changelog
-        run: echo "changes=$(${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
+        run: |
+          {
+            echo changes<<EOF
+            ${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com 
+            echo EOF
+          } >> $GITHUB_ENV
         if: steps.next_release.outputs.version != ''
 
       - name: Create versioning pull request
@@ -46,7 +51,7 @@ jobs:
           body: |
             This PR will release version `${{ steps.next_release.outputs.version }}` with the following changes:
 
-            ${{ steps.update_changelog.outputs.changes }}
+            ${{ env.changes }}
 
             To release the version when you are ready, merge this PR.
 
