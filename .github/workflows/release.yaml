@@ -22,5 +22,5 @@ jobs:
           curl -kL -o - https://github.com/intuit/auto/releases/download/v11.3.0/auto-linux.gz | gunzip > ${{ runner.temp }}/auto
           chmod +x ${{ runner.temp }}/auto
 
-      - name: Dry run the release
-        run: ${{ runner.temp }}/auto shipit --dry-run --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+      - name: Release
+        run: ${{ runner.temp }}/auto shipit --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
