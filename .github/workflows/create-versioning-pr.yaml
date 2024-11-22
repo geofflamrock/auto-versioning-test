@@ -38,4 +38,4 @@ jobs:
           branch: auto/release
           title: Release version ${{ steps.next_release.outputs.version }}
           commit-message: Release version ${{ steps.next_release.outputs.version }}
-          labels: autorelease
+          labels: release
