@@ -23,4 +23,4 @@ jobs:
           chmod +x ${{ runner.temp }}/auto
 
       - name: Release
-        run: ${{ runner.temp }}/auto shipit --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+        run: ${{ runner.temp }}/auto shipit --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
