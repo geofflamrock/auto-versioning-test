@@ -1,3 +1,20 @@
+# v0.2.0 (Fri Nov 22 2024)
+
+#### 🚀 Enhancement
+
+- Another minor change [#7](https://github.com/geofflamrock/auto-versioning-test/pull/7) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### ⚠️ Pushed to `main`
+
+- Fix permissions ([@geofflamrock](https://github.com/geofflamrock))
+- Attempt to get versioning PR working again ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.1.2 (Fri Nov 22 2024)
 
 #### 🐛 Bug Fix
