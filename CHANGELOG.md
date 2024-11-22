@@ -1,3 +1,21 @@
+# v0.1.2 (Fri Nov 22 2024)
+
+#### 🐛 Bug Fix
+
+- Release version `0.1.2` [#6](https://github.com/geofflamrock/auto-versioning-test/pull/6) ([@geofflamrock](https://github.com/geofflamrock))
+- A patch change [#5](https://github.com/geofflamrock/auto-versioning-test/pull/5) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### ⚠️ Pushed to `main`
+
+- Change to workflow_dispatch ([@geofflamrock](https://github.com/geofflamrock))
+- Remove versioning pr ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.1.1 (Fri Nov 22 2024)
 
 
