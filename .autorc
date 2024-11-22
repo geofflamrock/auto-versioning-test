@@ -9,5 +9,5 @@
       }
     ]
   ],
-  "onlyPublishWithReleaseLabel": true
+  "onlyPublishWithReleaseLabel": false
 }
