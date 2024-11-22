@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "git-tag",
+    "released",
+    [
+      "omit-release-notes",
+      {
+        "labels": "autorelease"
+      }
+    ]
+  ],
+  "onlyPublishWithReleaseLabel": true
+}
