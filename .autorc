@@ -12,7 +12,7 @@
   "onlyPublishWithReleaseLabel": false,
   "labels": [
     {
-      "name": "internal",
+      "name": "default",
       "releaseType": "none",
       "default": true
     }
