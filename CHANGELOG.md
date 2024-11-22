@@ -1,3 +1,28 @@
+# v0.3.0 (Fri Nov 22 2024)
+
+#### 🚀 Enhancement
+
+- A third minor change [#9](https://github.com/geofflamrock/auto-versioning-test/pull/9) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### 🐛 Bug Fix
+
+- Another patch change [#11](https://github.com/geofflamrock/auto-versioning-test/pull/11) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### ⚠️ Pushed to `main`
+
+- Try not including the release PR in release notes ([@geofflamrock](https://github.com/geofflamrock))
+- Add missing pipe to env ([@geofflamrock](https://github.com/geofflamrock))
+- More attempts to get env vars working ([@geofflamrock](https://github.com/geofflamrock))
+- Trying to get env vars to work ([@geofflamrock](https://github.com/geofflamrock))
+- Use env instead ([@geofflamrock](https://github.com/geofflamrock))
+- Add changes to versioning PR ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.2.0 (Fri Nov 22 2024)
 
 #### 🚀 Enhancement
