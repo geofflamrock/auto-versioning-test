@@ -23,4 +23,21 @@ jobs:
           chmod +x ${{ runner.temp }}/auto
 
       - name: Release
-        run: ${{ runner.temp }}/auto shipit --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+        run: ${{ runner.temp }}/auto shipit --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+
+      - name: Get next release number
+        id: next_release
+        run: echo "version=$(${{ runner.temp }}/auto shipit --dry-run --quiet --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
+
+      - name: Update changelog
+        run: ${{ runner.temp }}/auto changelog --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+        if: steps.next_release.outputs.version != ''
+
+      - name: Create versioning pull request
+        uses: peter-evans/create-pull-request@v7
+        if: steps.next_release.outputs.version != ''
+        with:
+          branch: auto/release
+          title: Release version ${{ steps.next_release.outputs.version }}
+          commit-message: Release version ${{ steps.next_release.outputs.version }}
+          labels: release
