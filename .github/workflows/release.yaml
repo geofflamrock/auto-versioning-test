@@ -33,9 +33,9 @@ jobs:
       - name: Update changelog
         id: update_changelog
         run: |
-          echo changes<<EOF
-          ${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com 
-          echo EOF >> $GITHUB_ENV
+          echo "changes<<EOF"
+          echo "$(${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
         if: steps.next_release.outputs.version != ''
 
       - name: Create versioning pull request
