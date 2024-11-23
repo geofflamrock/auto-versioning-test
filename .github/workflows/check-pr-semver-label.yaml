@@ -30,7 +30,7 @@ jobs:
           chmod +x ${{ runner.temp }}/auto
 
       - name: Check PR
-        run: ${{ runner.temp }}/auto pr-check --pr ${{ github.event.pull_request.id }} --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: ${{ runner.temp }}/auto pr-check --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
       - name: Add comment if PR is not semver labeled
         run: ${{ runner.temp }}/auto comment --message "Please add a semver label to this PR indicating the type of change." --context "Versioning Check" --pr ${{ github.event.pull_request.number }} --edit
