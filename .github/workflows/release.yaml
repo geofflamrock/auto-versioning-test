@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
+      next_release_version: ${{ steps.get_next_release_version.outputs.version }}
       create_release: ${{ steps.set_create_release.outputs.create_release }}
       has_unreleased_changes: ${{ steps.set_has_unreleased_changes.outputs.has_unreleased_changes }}
     env:
@@ -130,11 +131,11 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: auto/release
-          title: Release version `${{ needs.get_version.outputs.version }}`
-          commit-message: Release version `${{ needs.get_version.outputs.version }}`
+          title: Release version `${{ needs.get_version.outputs.next_release_version }}`
+          commit-message: Release version `${{ needs.get_version.outputs.next_release_version }}`
           labels: release
           body: |
-            This PR will release version `${{ needs.get_version.outputs.version }}`
+            This PR will release version `${{ needs.get_version.outputs.next_release_version }}`
 
             ## Changes
 
