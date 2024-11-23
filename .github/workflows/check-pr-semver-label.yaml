@@ -33,15 +33,8 @@ jobs:
         run: ${{ runner.temp }}/auto pr-check --context "Versioning / Semver Label" --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
       - name: Add/edit comment if PR is not semver labeled
-        run: ${{ runner.temp }}/auto comment --message "Please add a semver label to this PR indicating the type of change." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
+        run: ${{ runner.temp }}/auto comment --message "This project uses semver labels on pull requests to indicate whether a change should result in a new version. Please add a semver label to this PR indicating how to release this change." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
         if: failure()
 
-      - name: Get PR labels
-        id: get_pr_labels
-        run: |
-          echo "labels<<EOF" >> $GITHUB_ENV
-          echo "$(${{ runner.temp }}/auto label --pr ${{ github.event.pull_request.number }})" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
-      - name: Add/edit comment if PR is semver labeled
-        run: ${{ runner.temp }}/auto comment --message "The changes will be released in ${{ env.labels }}." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
+      - name: Delete comment if PR is semver labeled
+        run: ${{ runner.temp }}/auto comment --context "Semver label" --pr ${{ github.event.pull_request.number }} --delete
