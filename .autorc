@@ -9,12 +9,5 @@
       }
     ]
   ],
-  "onlyPublishWithReleaseLabel": false,
-  "labels": [
-    {
-      "name": "skip-release",
-      "releaseType": "skip",
-      "default": true
-    }
-  ]
+  "onlyPublishWithReleaseLabel": false
 }
