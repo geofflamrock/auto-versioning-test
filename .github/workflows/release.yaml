@@ -23,13 +23,19 @@ jobs:
           curl -kL -o - https://github.com/intuit/auto/releases/download/v11.3.0/auto-linux.gz | gunzip > ${{ runner.temp }}/auto
           chmod +x ${{ runner.temp }}/auto
 
-      - name: Get release version
-        id: get_release_version
+      - name: Get next release version
+        id: get_next_release_version
         run: echo "version=$(${{ runner.temp }}/auto shipit --dry-run --quiet --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
+
+      - name: Print next release version
+        run: echo "Version ${{ steps.get_next_release_version.outputs.version }}"
 
       - name: Get semver bump type
         id: get_semver_bump_type
         run: echo "bump_type=$(${{ runner.temp }}/auto version --only-publish-with-release-label)" >> $GITHUB_OUTPUT
+
+      - name: Print semver bump type
+        run: echo "Version ${{ steps.get_semver_bump_type.outputs.bump_type }}"
 
       - name: Get branch names
         id: branch_names
@@ -37,39 +43,39 @@ jobs:
 
       - name: Get pre-release version
         id: get_pre_release_version
-        run: echo "version=${{ steps.get_release_version.outcome.version }}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ steps.get_next_release_version.outcome.version }}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
 
       - name: Get version
         id: get_version
-        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_semver_bump_type.outcome.bump_type != '' && steps.get_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_semver_bump_type.outcome.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
 
-      - name: Release
-        run: ${{ runner.temp }}/auto shipit --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+      # - name: Release
+      #   run: ${{ runner.temp }}/auto shipit --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
 
-      - name: Update changelog
-        id: update_changelog
-        run: |
-          echo "changes<<EOF" >> $GITHUB_ENV
-          echo "$(${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-        if: steps.get_release_version.outputs.version != ''
+      # - name: Update changelog
+      #   id: update_changelog
+      #   run: |
+      #     echo "changes<<EOF" >> $GITHUB_ENV
+      #     echo "$(${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_ENV
+      #     echo "EOF" >> $GITHUB_ENV
+      #   if: steps.get_release_version.outputs.version != ''
 
-      - name: Create versioning pull request
-        uses: peter-evans/create-pull-request@v7
-        if: steps.get_release_version.outputs.version != ''
-        with:
-          branch: auto/release
-          title: Release version `${{ steps.get_release_version.outputs.version }}`
-          commit-message: Release version `${{ steps.get_release_version.outputs.version }}`
-          labels: release
-          body: |
-            This PR will release version `${{ steps.get_release_version.outputs.version }}` with the following changes:
+      # - name: Create versioning pull request
+      #   uses: peter-evans/create-pull-request@v7
+      #   if: steps.get_release_version.outputs.version != ''
+      #   with:
+      #     branch: auto/release
+      #     title: Release version `${{ steps.get_release_version.outputs.version }}`
+      #     commit-message: Release version `${{ steps.get_release_version.outputs.version }}`
+      #     labels: release
+      #     body: |
+      #       This PR will release version `${{ steps.get_release_version.outputs.version }}` with the following changes:
 
-            ${{ env.changes }}
+      #       ${{ env.changes }}
 
-            To release the version when you are ready, merge this PR.
+      #       To release the version when you are ready, merge this PR.
 
-            If you don't see your changes in the list above, please check your PR is tagged with an appropriate label to include your change in the release notes.
+      #       If you don't see your changes in the list above, please check your PR is tagged with an appropriate label to include your change in the release notes.

@@ -9,12 +9,5 @@
       }
     ]
   ],
-  "onlyPublishWithReleaseLabel": false,
-  "labels": [
-    {
-      "name": "default",
-      "releaseType": "none",
-      "default": true
-    }
-  ]
+  "onlyPublishWithReleaseLabel": false
 }
