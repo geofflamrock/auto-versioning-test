@@ -3,7 +3,7 @@
     "git-tag",
     "released",
     [
-      "omit-release-notes",
+      "omit-commit",
       {
         "labels": "release"
       }
