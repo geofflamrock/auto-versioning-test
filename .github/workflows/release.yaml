@@ -129,11 +129,11 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: auto/release
-          title: Release version `${{ steps.get_next_release_version.outputs.version }}`
-          commit-message: Release version `${{ steps.get_next_release_version.outputs.version }}`
+          title: Release version `${{ needs.get_version.outputs.version }}`
+          commit-message: Release version `${{ needs.get_version.outputs.version }}`
           labels: release
           body: |
-            This PR will release version `${{ steps.get_next_release_version.outputs.version }}`
+            This PR will release version `${{ needs.get_version.outputs.version }}`
 
             ## Changes
 
