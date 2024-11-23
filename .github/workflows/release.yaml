@@ -55,8 +55,8 @@ jobs:
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
 
-      - name: Release (echo)
-        run: echo "${{ runner.temp }}/auto shipit --no-changelog --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com"
+      - name: Release
+        run: ${{ runner.temp }}/auto shipit --no-changelog --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
         if: steps.get_next_release_semver_bump_type.outputs.bump_type != ''
 
       - name: Update changelog
@@ -70,19 +70,19 @@ jobs:
       - name: Print changes
         run: echo "${{ env.changes }}"
 
-      # - name: Create versioning pull request
-      #   uses: peter-evans/create-pull-request@v7
-      #   if: steps.get_potential_next_release_semver_bump_type.outputs.bump_type != ''
-      #   with:
-      #     branch: auto/release
-      #     title: Release version `${{ steps.get_next_release_version.outputs.version }}`
-      #     commit-message: Release version `${{ steps.get_next_release_version.outputs.version }}`
-      #     labels: release
-      #     body: |
-      #       This PR will release version `${{ steps.get_next_release_version.outputs.version }}` with the following changes:
+      - name: Create versioning pull request
+        uses: peter-evans/create-pull-request@v7
+        if: steps.get_next_release_semver_bump_type.outputs.bump_type == ''
+        with:
+          branch: auto/release
+          title: Release version `${{ steps.get_next_release_version.outputs.version }}`
+          commit-message: Release version `${{ steps.get_next_release_version.outputs.version }}`
+          labels: release
+          body: |
+            This PR will release version `${{ steps.get_next_release_version.outputs.version }}` with the following changes:
 
-      #       ${{ env.changes }}
+            ${{ env.changes }}
 
-      #       To release the version when you are ready, merge this PR.
+            To release the version when you are ready, merge this PR.
 
-      #       If you don't see your changes in the list above, please check your PR is tagged with an appropriate label to include your change in the release notes.
+            If you don't see your changes in the list above, please check your PR is tagged with an appropriate label to include your change in the release notes.
