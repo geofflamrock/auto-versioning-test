@@ -1,4 +1,4 @@
-name: Release
+name: Check PR has Semver Label
 
 on:
   pull_request:
@@ -30,8 +30,12 @@ jobs:
           chmod +x ${{ runner.temp }}/auto
 
       - name: Check PR
-        run: ${{ runner.temp }}/auto pr-check --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: ${{ runner.temp }}/auto pr-check --context "Check PR has Semver Label / Check PR" --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-      - name: Add comment if PR is not semver labeled
-        run: ${{ runner.temp }}/auto comment --message "Please add a semver label to this PR indicating the type of change." --context "Versioning Check" --pr ${{ github.event.pull_request.number }} --edit
+      - name: Add/edit comment if PR is semver labeled
+        run: ${{ runner.temp }}/auto comment --message "Thank you for adding a semver label to this PR." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
+        if: success()
+
+      - name: Add/edit comment if PR is not semver labeled
+        run: ${{ runner.temp }}/auto comment --message "Please add a semver label to this PR indicating the type of change." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
         if: failure()
