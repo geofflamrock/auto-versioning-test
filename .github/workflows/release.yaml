@@ -14,7 +14,7 @@ jobs:
     outputs:
       version: ${{ steps.get_version.outputs.version }}
       create_release: ${{ steps.set_create_release.outputs.create_release }}
-      has_unreleased_changes: ${{ steps.set_create_release.outputs.has_unreleased_changes }}
+      has_unreleased_changes: ${{ steps.set_has_unreleased_changes.outputs.has_unreleased_changes }}
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
@@ -67,6 +67,7 @@ jobs:
         run: echo "create_release=${{ steps.get_next_release_semver_bump_type.outputs.bump_type != '' }}" >> $GITHUB_OUTPUT
 
       - name: Set whether there are unreleased changes
+        id: set_has_unreleased_changes
         run: echo "has_unreleased_changes=${{ steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != '' }}" >> $GITHUB_OUTPUT
 
       - name: Get version
