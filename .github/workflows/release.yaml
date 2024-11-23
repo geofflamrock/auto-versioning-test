@@ -4,10 +4,17 @@ on:
   push:
     branches: ["main"]
 
+  pull_request:
+    branches: ["main"]
+
 jobs:
-  release:
-    name: Release
+  get_version:
+    name: Get versioning information
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+      create_release: ${{ steps.set_create_release.outputs.create_release }}
+      create_versioning_pr: ${{ steps.set_create_release.outputs.create_versioning_pr }}
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
@@ -48,31 +55,45 @@ jobs:
           tag_prefix: "v"
           version_format: "${major}.${minor}.${patch}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}"
 
+      - name: Set whether to perform a release
+        id: set_create_release
+        run: echo "create_release=${{ steps.get_next_release_semver_bump_type.outputs.bump_type != '' }}" >> $GITHUB_OUTPUT
+
+      - name: Set whether to create a versioning pull request
+        run: echo "create_versioning_pr=${{ steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != '' }}" >> $GITHUB_OUTPUT
+
       - name: Get version
         id: get_version
-        run: echo "version=${{ steps.get_next_release_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ steps.set_create_release.outputs.create_release && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
 
+  release:
+    name: Release
+    needs: [get_version]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && needs.get_version.outputs.create_release == 'true'
+    steps:
       - name: Release
         run: ${{ runner.temp }}/auto shipit --only-publish-with-release-label --no-changelog --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
-        if: steps.get_next_release_semver_bump_type.outputs.bump_type != ''
+        # if: steps.get_next_release_semver_bump_type.outputs.bump_type != ''
 
+  versioning_pr:
+    name: Create versioning pull request
+    needs: [get_version]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && needs.get_version.outputs.create_versioning_pr == 'true'
+    steps:
       - name: Update changelog
         id: update_changelog
         run: |
           echo "changes<<EOF" >> $GITHUB_ENV
           echo "$(${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-        if: steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != ''
-
-      - name: Print changes
-        run: echo "${{ env.changes }}"
 
       - name: Create versioning pull request
         uses: peter-evans/create-pull-request@v7
-        if: steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != ''
         with:
           branch: auto/release
           title: Release version `${{ steps.get_next_release_version.outputs.version }}`
