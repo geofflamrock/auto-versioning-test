@@ -3,5 +3,7 @@
     "git-tag",
     "released"
   ],
-  "onlyGraduateWithReleaseLabel": true
+  "shipIt": {
+    "onlyGraduateWithReleaseLabel": true
+  }
 }
