@@ -30,12 +30,19 @@ jobs:
       - name: Print next release version
         run: echo "${{ steps.get_next_release_version.outputs.version }}"
 
-      - name: Get semver bump type
-        id: get_semver_bump_type
+      - name: Get next release semver bump type
+        id: get_next_release_semver_bump_type
         run: echo "bump_type=$(${{ runner.temp }}/auto version --only-publish-with-release-label)" >> $GITHUB_OUTPUT
 
-      - name: Print semver bump type
-        run: echo "${{ steps.get_semver_bump_type.outputs.bump_type }}"
+      - name: Print next release semver bump type
+        run: echo "${{ steps.get_next_release_semver_bump_type.outputs.bump_type }}"
+
+      - name: Get potential next release semver bump type
+        id: get_potential_next_release_semver_bump_type
+        run: echo "bump_type=$(${{ runner.temp }}/auto version --only-publish-with-release-label)" >> $GITHUB_OUTPUT
+
+      - name: Print potential next release semver bump type
+        run: echo "${{ steps.get_potential_next_release_semver_bump_type.outputs.bump_type }}"
 
       - name: Get branch names
         id: branch_names
@@ -47,13 +54,14 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_next_release_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
 
-      # - name: Release
-      #   run: ${{ runner.temp }}/auto shipit --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+      # - name: Release (echo)
+      #   run: echo "${{ runner.temp }}/auto shipit --no-changelog --only-publish-with-release-label --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com"
+      #   if: steps.get_next_release_semver_bump_type.outputs.bump_type != ''
 
       # - name: Update changelog
       #   id: update_changelog
@@ -61,18 +69,18 @@ jobs:
       #     echo "changes<<EOF" >> $GITHUB_ENV
       #     echo "$(${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_ENV
       #     echo "EOF" >> $GITHUB_ENV
-      #   if: steps.get_release_version.outputs.version != ''
+      #   if: steps.get_potential_next_release_semver_bump_type.outputs.bump_type != ''
 
       # - name: Create versioning pull request
       #   uses: peter-evans/create-pull-request@v7
-      #   if: steps.get_release_version.outputs.version != ''
+      #   if: steps.get_potential_next_release_semver_bump_type.outputs.bump_type != ''
       #   with:
       #     branch: auto/release
-      #     title: Release version `${{ steps.get_release_version.outputs.version }}`
-      #     commit-message: Release version `${{ steps.get_release_version.outputs.version }}`
+      #     title: Release version `${{ steps.get_next_release_version.outputs.version }}`
+      #     commit-message: Release version `${{ steps.get_next_release_version.outputs.version }}`
       #     labels: release
       #     body: |
-      #       This PR will release version `${{ steps.get_release_version.outputs.version }}` with the following changes:
+      #       This PR will release version `${{ steps.get_next_release_version.outputs.version }}` with the following changes:
 
       #       ${{ env.changes }}
 
