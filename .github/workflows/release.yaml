@@ -25,17 +25,17 @@ jobs:
 
       - name: Get next release version
         id: get_next_release_version
-        run: echo "version=$(${{ runner.temp }}/auto shipit --dry-run --quiet --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
+        run: echo "version=$(${{ runner.temp }}/auto shipit --dry-run --quiet --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
 
       - name: Print next release version
-        run: echo "Version ${{ steps.get_next_release_version.outputs.version }}"
+        run: echo "${{ steps.get_next_release_version.outputs.version }}"
 
       - name: Get semver bump type
         id: get_semver_bump_type
         run: echo "bump_type=$(${{ runner.temp }}/auto version --only-publish-with-release-label)" >> $GITHUB_OUTPUT
 
       - name: Print semver bump type
-        run: echo "Version ${{ steps.get_semver_bump_type.outputs.bump_type }}"
+        run: echo "${{ steps.get_semver_bump_type.outputs.bump_type }}"
 
       - name: Get branch names
         id: branch_names
@@ -43,11 +43,11 @@ jobs:
 
       - name: Get pre-release version
         id: get_pre_release_version
-        run: echo "version=${{ steps.get_next_release_version.outcome.version }}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ steps.get_next_release_version.outputs.version }}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
 
       - name: Get version
         id: get_version
-        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_semver_bump_type.outcome.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
