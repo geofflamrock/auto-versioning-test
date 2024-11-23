@@ -1,3 +1,15 @@
+# v0.6.0 (Sat Nov 23 2024)
+
+#### 🚀 Enhancement
+
+- Something minor [#26](https://github.com/geofflamrock/auto-versioning-test/pull/26) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.5.1 (Sat Nov 23 2024)
 
 #### 🐛 Bug Fix
