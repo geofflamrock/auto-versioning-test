@@ -101,7 +101,7 @@ jobs:
           chmod +x ${{ runner.temp }}/auto
 
       - name: Check PR
-        run: ${{ runner.temp }}/auto pr-check --pr $PR --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/$GITHUB_RUN_ID"
+        run: ${{ runner.temp }}/auto pr-check --dry-run --verbose --pr ${{ github.event.pull_request.id }} --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/$GITHUB_RUN_ID"
 
   release:
     name: Release
