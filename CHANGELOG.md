@@ -1,3 +1,17 @@
+# v0.6.4 (Sat Nov 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Fix key ([@geofflamrock](https://github.com/geofflamrock))
+- Fix config ([@geofflamrock](https://github.com/geofflamrock))
+- Testing graduate with release label ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.6.3 (Sat Nov 23 2024)
 
 #### 🐛 Bug Fix
