@@ -1,3 +1,15 @@
+# v0.6.1 (Sat Nov 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Add automation label ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.6.0 (Sat Nov 23 2024)
 
 #### 🚀 Enhancement
