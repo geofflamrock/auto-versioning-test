@@ -14,7 +14,7 @@ jobs:
     outputs:
       version: ${{ steps.get_version.outputs.version }}
       create_release: ${{ steps.set_create_release.outputs.create_release }}
-      create_versioning_pr: ${{ steps.set_create_release.outputs.create_versioning_pr }}
+      has_unreleased_changes: ${{ steps.set_create_release.outputs.has_unreleased_changes }}
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Get next release version
         id: get_next_release_version
-        run: echo "version=$(${{ runner.temp }}/auto latest --base-branch ${{ github.head_ref || github.ref }} --dry-run --quiet --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
+        run: echo "version=$(${{ runner.temp }}/auto latest --dry-run --quiet --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
 
       - name: Print next release version
         run: echo "${{ steps.get_next_release_version.outputs.version }}"
@@ -66,8 +66,8 @@ jobs:
         id: set_create_release
         run: echo "create_release=${{ steps.get_next_release_semver_bump_type.outputs.bump_type != '' }}" >> $GITHUB_OUTPUT
 
-      - name: Set whether to create a versioning pull request
-        run: echo "create_versioning_pr=${{ steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != '' }}" >> $GITHUB_OUTPUT
+      - name: Set whether there are unreleased changes
+        run: echo "has_unreleased_changes=${{ steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != '' }}" >> $GITHUB_OUTPUT
 
       - name: Get version
         id: get_version
@@ -90,7 +90,7 @@ jobs:
     name: Create versioning pull request
     needs: [get_version]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && needs.get_version.outputs.create_versioning_pr == 'true'
+    if: github.ref == 'refs/heads/main' && needs.get_version.outputs.has_unreleased_changes == 'true'
     steps:
       - name: Update changelog
         id: update_changelog
