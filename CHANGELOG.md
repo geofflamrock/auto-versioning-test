@@ -1,3 +1,16 @@
+# v0.6.6 (Sat Nov 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'main' of https://github.com/geofflamrock/auto-versioning-test ([@geofflamrock](https://github.com/geofflamrock))
+- Change to use shipit ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.6.5 (Sat Nov 23 2024)
 
 #### 🐛 Bug Fix
