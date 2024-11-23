@@ -133,7 +133,9 @@ jobs:
           branch: auto/release
           title: Release version `${{ needs.get_version.outputs.next_release_version }}`
           commit-message: Release version `${{ needs.get_version.outputs.next_release_version }}`
-          labels: release
+          labels: |
+            release
+            automation
           body: |
             This PR will release version `${{ needs.get_version.outputs.next_release_version }}`
 
