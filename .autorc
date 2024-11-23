@@ -9,7 +9,7 @@
       }
     ]
   ],
-  "onlyPublishWithReleaseLabel": true,
+  "onlyPublishWithReleaseLabel": false,
   "labels": [
     {
       "name": "default",

@@ -32,7 +32,7 @@ jobs:
 
       - name: Get next release semver bump type
         id: get_next_release_semver_bump_type
-        run: echo "bump_type=$(${{ runner.temp }}/auto version)" >> $GITHUB_OUTPUT
+        run: echo "bump_type=$(${{ runner.temp }}/auto version --only-publish-with-release-label)" >> $GITHUB_OUTPUT
 
       - name: Print next release semver bump type
         run: echo "${{ steps.get_next_release_semver_bump_type.outputs.bump_type }}"
@@ -56,7 +56,7 @@ jobs:
         run: echo "Version ${{ steps.get_version.outputs.version }}"
 
       - name: Release
-        run: ${{ runner.temp }}/auto shipit --no-changelog --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+        run: ${{ runner.temp }}/auto shipit --only-publish-with-release-label --no-changelog --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
         if: steps.get_next_release_semver_bump_type.outputs.bump_type != ''
 
       - name: Update changelog
