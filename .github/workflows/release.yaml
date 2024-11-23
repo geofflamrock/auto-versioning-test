@@ -60,7 +60,7 @@ jobs:
 
       - name: Get pre-release version when version
         id: get_specific_pre_release_version
-        run: echo "version=${{ steps.get_next_release_version.outputs.version }}}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ steps.get_next_release_version.outputs.version }}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
 
       - name: Set whether to perform a release
         id: set_create_release
@@ -71,7 +71,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo "version=${{ steps.set_create_release.outputs.create_release && steps.get_next_release_version.outputs.version || steps.get_specific_pre_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ steps.set_create_release.outputs.create_release == 'true' && steps.get_next_release_version.outputs.version || steps.get_specific_pre_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
