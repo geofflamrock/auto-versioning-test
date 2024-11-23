@@ -78,6 +78,23 @@ jobs:
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
 
+  check_pr:
+    name: Check PR
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Get all tags
+
+      - name: Download auto
+        run: |
+          curl -kL -o - https://github.com/intuit/auto/releases/download/v11.3.0/auto-linux.gz | gunzip > ${{ runner.temp }}/auto
+          chmod +x ${{ runner.temp }}/auto
+
+      - name: Check PR
+        run: ${{ runner.temp }}/auto pr-check --pr $PR --url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+
   release:
     name: Release
     needs: [get_version]
