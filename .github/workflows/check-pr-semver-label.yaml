@@ -15,8 +15,6 @@ jobs:
       statuses: write
       # Needed to create PR statuses/checks
       checks: write
-      # Needed to create PR comments
-      pull-requests: write
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
