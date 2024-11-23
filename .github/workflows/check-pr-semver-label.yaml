@@ -32,13 +32,16 @@ jobs:
       - name: Check PR
         run: ${{ runner.temp }}/auto pr-check --context "Versioning / Semver Label" --url "${{ github.api_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-      - name: Get PR labels
-        id: get_pr_labels
-        run: echo "labels=$(${{ runner.temp }}/auto label --pr ${{ github.event.pull_request.number }})" >> $GITHUB_OUTPUT
-
-      - name: Add/edit comment if PR is semver labeled
-        run: ${{ runner.temp }}/auto comment --message "The changes will be released in ${{ steps.get_pr_labels.outputs.labels }}." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
-
       - name: Add/edit comment if PR is not semver labeled
         run: ${{ runner.temp }}/auto comment --message "Please add a semver label to this PR indicating the type of change." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
         if: failure()
+
+      - name: Get PR labels
+        id: get_pr_labels
+        run: |
+          echo "labels<<EOF" >> $GITHUB_ENV
+          echo "$(${{ runner.temp }}/auto label --pr ${{ github.event.pull_request.number }})" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Add/edit comment if PR is semver labeled
+        run: ${{ runner.temp }}/auto comment --message "The changes will be released in ${{ env.labels }}." --context "Semver label" --pr ${{ github.event.pull_request.number }} --edit
