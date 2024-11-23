@@ -8,3 +8,4 @@ Another minor change
 Another bug fix
 A minor change
 A patch change
+Test
