@@ -6,3 +6,4 @@ Another patch change
 A change that doesn't cause a new version
 Another minor change
 Another bug fix
+A minor change
