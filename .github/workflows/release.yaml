@@ -30,8 +30,8 @@ jobs:
           curl -kL -o - https://github.com/intuit/auto/releases/download/v11.3.0/auto-linux.gz | gunzip > ${{ runner.temp }}/auto
           chmod +x ${{ runner.temp }}/auto
 
-      - name: Test shipit
-        run: ${{ runner.temp }}/auto shipit --base-branch ${{ github.head_ref || github.ref }} --dry-run --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
+      - name: Test latest
+        run: ${{ runner.temp }}/auto latest --base-branch ${{ github.head_ref || github.ref }} --dry-run --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
 
       - name: Get next release version
         id: get_next_release_version
