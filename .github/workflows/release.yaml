@@ -79,9 +79,13 @@ jobs:
           commit-message: Release version `${{ steps.get_next_release_version.outputs.version }}`
           labels: release
           body: |
-            This PR will release version `${{ steps.get_next_release_version.outputs.version }}` with the following changes:
+            This PR will release version `${{ steps.get_next_release_version.outputs.version }}`
+
+            ## Changes
 
             ${{ env.changes }}
+
+            ## Releasing a new version
 
             To release the version when you are ready, merge this PR.
 
