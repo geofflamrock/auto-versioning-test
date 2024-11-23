@@ -32,17 +32,10 @@ jobs:
 
       - name: Get next release semver bump type
         id: get_next_release_semver_bump_type
-        run: echo "bump_type=$(${{ runner.temp }}/auto version --only-publish-with-release-label)" >> $GITHUB_OUTPUT
+        run: echo "bump_type=$(${{ runner.temp }}/auto version)" >> $GITHUB_OUTPUT
 
       - name: Print next release semver bump type
         run: echo "${{ steps.get_next_release_semver_bump_type.outputs.bump_type }}"
-
-      - name: Get potential next release semver bump type
-        id: get_potential_next_release_semver_bump_type
-        run: echo "bump_type=$(${{ runner.temp }}/auto version --only-publish-with-release-label)" >> $GITHUB_OUTPUT
-
-      - name: Print potential next release semver bump type
-        run: echo "${{ steps.get_potential_next_release_semver_bump_type.outputs.bump_type }}"
 
       - name: Get branch names
         id: branch_names
@@ -50,7 +43,10 @@ jobs:
 
       - name: Get pre-release version
         id: get_pre_release_version
-        run: echo "version=${{ steps.get_next_release_version.outputs.version }}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"
+          version_format: "${major}.${minor}.${patch}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}"
 
       - name: Get version
         id: get_version
