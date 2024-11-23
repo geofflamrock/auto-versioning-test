@@ -1,3 +1,20 @@
+# v0.5.0 (Sat Nov 23 2024)
+
+#### 🚀 Enhancement
+
+- Fix some issue [#21](https://github.com/geofflamrock/auto-versioning-test/pull/21) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### ⚠️ Pushed to `main`
+
+- Revert release label required ([@geofflamrock](https://github.com/geofflamrock))
+- Set release label required ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.4.0 (Sat Nov 23 2024)
 
 #### 🚀 Enhancement
