@@ -1,3 +1,21 @@
+# (Sat Nov 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Add back in PR and releasing ([@geofflamrock](https://github.com/geofflamrock))
+- Testing release and changes ([@geofflamrock](https://github.com/geofflamrock))
+- More testing of versions ([@geofflamrock](https://github.com/geofflamrock))
+- More testing ([@geofflamrock](https://github.com/geofflamrock))
+- Fix syntax ([@geofflamrock](https://github.com/geofflamrock))
+- More testing of version numbers ([@geofflamrock](https://github.com/geofflamrock))
+- Test getting release vs pre-release versions ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.3.0 (Fri Nov 22 2024)
 
 #### 🚀 Enhancement
