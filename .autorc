@@ -3,13 +3,5 @@
     "git-tag",
     "released"
   ],
-  "onlyPublishWithReleaseLabel": false,
-  "labels": [
-    {
-      "name": "automation",
-      "releaseType": "none",
-      "description": "Changes that are related to automation",
-      "changelogTitle": ""
-    }
-  ]
+  "onlyGraduateWithReleaseLabel": true
 }
