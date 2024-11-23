@@ -1,5 +1,26 @@
 # v0.5.1 (Sat Nov 23 2024)
 
+#### 🐛 Bug Fix
+
+- Release version `0.5.1` [#24](https://github.com/geofflamrock/auto-versioning-test/pull/24) ([@geofflamrock](https://github.com/geofflamrock) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### ⚠️ Pushed to `main`
+
+- Remove omit-commits ([@geofflamrock](https://github.com/geofflamrock))
+- Fix plugin name ([@geofflamrock](https://github.com/geofflamrock))
+- Remove skip-release as default ([@geofflamrock](https://github.com/geofflamrock))
+- Testing omit-commit ([@geofflamrock](https://github.com/geofflamrock))
+- Set skip-release as default label ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 2
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
+# v0.5.1 (Sat Nov 23 2024)
+
 #### ⚠️ Pushed to `main`
 
 - Fix plugin name ([@geofflamrock](https://github.com/geofflamrock))
