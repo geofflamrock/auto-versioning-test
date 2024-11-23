@@ -87,6 +87,6 @@ jobs:
 
             ## Releasing a new version
 
-            To release the version when you are ready, merge this PR.
+            To release the version when you are ready, merge this PR. The new version will then be built and published to a GitHub release.
 
             If you don't see your changes in the list above, please check your PR is tagged with an appropriate label to include your change in the release notes.
