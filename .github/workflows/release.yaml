@@ -81,18 +81,30 @@ jobs:
     name: Release
     needs: [get_version]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     if: github.ref == 'refs/heads/main' && needs.get_version.outputs.create_release == 'true'
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Get all tags
+
       - name: Release
         run: ${{ runner.temp }}/auto shipit --only-publish-with-release-label --no-changelog --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
-        # if: steps.get_next_release_semver_bump_type.outputs.bump_type != ''
 
   versioning_pr:
     name: Create versioning pull request
     needs: [get_version]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     if: github.ref == 'refs/heads/main' && needs.get_version.outputs.has_unreleased_changes == 'true'
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Get all tags
+
       - name: Update changelog
         id: update_changelog
         run: |
