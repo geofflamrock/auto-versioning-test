@@ -1,3 +1,15 @@
+# v0.6.3 (Sat Nov 23 2024)
+
+#### 🐛 Bug Fix
+
+- Fix something else [#30](https://github.com/geofflamrock/auto-versioning-test/pull/30) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.6.2 (Sat Nov 23 2024)
 
 #### ⚠️ Pushed to `main`
