@@ -50,7 +50,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_next_release_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ steps.get_next_release_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
@@ -65,14 +65,14 @@ jobs:
           echo "changes<<EOF" >> $GITHUB_ENV
           echo "$(${{ runner.temp }}/auto changelog --quiet --no-git-commit --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-        if: steps.get_next_release_semver_bump_type.outputs.bump_type == ''
+        if: steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != ''
 
       - name: Print changes
         run: echo "${{ env.changes }}"
 
       - name: Create versioning pull request
         uses: peter-evans/create-pull-request@v7
-        if: steps.get_next_release_semver_bump_type.outputs.bump_type == ''
+        if: steps.get_next_release_semver_bump_type.outputs.bump_type == '' && steps.get_next_release_version.outputs.version != ''
         with:
           branch: auto/release
           title: Release version `${{ steps.get_next_release_version.outputs.version }}`
