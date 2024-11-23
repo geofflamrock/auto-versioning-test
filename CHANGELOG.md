@@ -1,3 +1,33 @@
+# v0.4.0 (Sat Nov 23 2024)
+
+#### 🚀 Enhancement
+
+- Separate version information from release and pr [#19](https://github.com/geofflamrock/auto-versioning-test/pull/19) ([@geofflamrock](https://github.com/geofflamrock))
+- New feature [#17](https://github.com/geofflamrock/auto-versioning-test/pull/17) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### ⚠️ Pushed to `main`
+
+- Fix versioning PR title ([@geofflamrock](https://github.com/geofflamrock))
+- Remove test step ([@geofflamrock](https://github.com/geofflamrock))
+- Set GH_TOKEN ([@geofflamrock](https://github.com/geofflamrock))
+- Fix PR title ([@geofflamrock](https://github.com/geofflamrock))
+- Add test of changelog ([@geofflamrock](https://github.com/geofflamrock))
+- Download auto in each job ([@geofflamrock](https://github.com/geofflamrock))
+- Fix permissions and add checkout ([@geofflamrock](https://github.com/geofflamrock))
+- Fix outputs ([@geofflamrock](https://github.com/geofflamrock))
+- More change to versioning PR ([@geofflamrock](https://github.com/geofflamrock))
+- Improvement to versioning PR ([@geofflamrock](https://github.com/geofflamrock))
+
+#### 📝 Documentation
+
+- A test docs change [#16](https://github.com/geofflamrock/auto-versioning-test/pull/16) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.3.1 (Sat Nov 23 2024)
 
 #### 🐛 Bug Fix
