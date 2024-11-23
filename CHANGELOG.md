@@ -1,3 +1,27 @@
+# v0.3.1 (Sat Nov 23 2024)
+
+#### 🐛 Bug Fix
+
+- Another patch [#14](https://github.com/geofflamrock/auto-versioning-test/pull/14) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### ⚠️ Pushed to `main`
+
+- Change to generate PR when there are changes ([@geofflamrock](https://github.com/geofflamrock))
+- Don't create a PR if not needed ([@geofflamrock](https://github.com/geofflamrock))
+- Add back in PR and releasing ([@geofflamrock](https://github.com/geofflamrock))
+- Testing release and changes ([@geofflamrock](https://github.com/geofflamrock))
+- More testing of versions ([@geofflamrock](https://github.com/geofflamrock))
+- More testing ([@geofflamrock](https://github.com/geofflamrock))
+- Fix syntax ([@geofflamrock](https://github.com/geofflamrock))
+- More testing of version numbers ([@geofflamrock](https://github.com/geofflamrock))
+- Test getting release vs pre-release versions ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.3.0 (Fri Nov 22 2024)
 
 #### 🚀 Enhancement
