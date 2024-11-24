@@ -36,12 +36,6 @@
       "color": "#8732bc"
     },
     {
-      "name": "release",
-      "description": "Create a release when this pr is merged",
-      "releaseType": "release",
-      "color": "#007f70"
-    },
-    {
       "name": "skip-release",
       "description": "Preserve the current version when merged",
       "releaseType": "skip",
@@ -67,6 +61,12 @@
       "description": "Add or improve existing tests",
       "releaseType": "none",
       "color": "#ffd3cc"
+    },
+    {
+      "name": "automation",
+      "changelogTitle": "🤖 Automation",
+      "description": "Changes to automation such as CI",
+      "releaseType": "none"
     }
   ]
 }
