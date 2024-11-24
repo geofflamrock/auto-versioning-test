@@ -1,3 +1,15 @@
+# v0.7.0 (Sun Nov 24 2024)
+
+#### 🚀 Enhancement
+
+- Make a minor change [#33](https://github.com/geofflamrock/auto-versioning-test/pull/33) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.6.8 (Sun Nov 24 2024)
 
 #### ⚠️ Pushed to `main`
