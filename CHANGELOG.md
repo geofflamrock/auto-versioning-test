@@ -1,3 +1,19 @@
+# v0.7.5 (Sun Nov 24 2024)
+
+#### 🐛 Bug Fix
+
+- Update README.md [#34](https://github.com/geofflamrock/auto-versioning-test/pull/34) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### ⚠️ Pushed to `main`
+
+- Make internal the default label ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.7.4 (Sun Nov 24 2024)
 
 #### ⚠️ Pushed to `main`
