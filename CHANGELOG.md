@@ -1,3 +1,15 @@
+# v0.6.8 (Sun Nov 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Fix ref check ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.6.7 (Sun Nov 24 2024)
 
 #### ⚠️ Pushed to `main`
