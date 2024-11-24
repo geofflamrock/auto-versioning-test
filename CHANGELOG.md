@@ -1,3 +1,15 @@
+# v0.7.4 (Sun Nov 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Testing shipit when no new commits ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.7.3 (Sun Nov 24 2024)
 
 
