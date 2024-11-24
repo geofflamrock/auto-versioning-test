@@ -10,3 +10,4 @@ A minor change
 A patch change
 Test
 Test
+Test
