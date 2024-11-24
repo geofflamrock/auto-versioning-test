@@ -1,3 +1,15 @@
+# v0.8.3 (Sun Nov 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Trying to get a versioning PR going again ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.8.2 (Sun Nov 24 2024)
 
 #### 🐛 Bug Fix
