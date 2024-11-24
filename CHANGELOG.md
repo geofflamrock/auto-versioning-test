@@ -1,3 +1,15 @@
+# v0.8.2 (Sun Nov 24 2024)
+
+#### 🐛 Bug Fix
+
+- A new patch [#38](https://github.com/geofflamrock/auto-versioning-test/pull/38) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.8.1 (Sun Nov 24 2024)
 
 #### 🐛 Bug Fix
