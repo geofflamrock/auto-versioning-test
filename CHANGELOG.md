@@ -1,3 +1,15 @@
+# v0.7.1 (Sun Nov 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Add workflow_dispatch ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.7.0 (Sun Nov 24 2024)
 
 #### 🚀 Enhancement
