@@ -1,3 +1,29 @@
+# v0.6.8 (Sun Nov 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Fix ref check ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
+# v0.6.7 (Sun Nov 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Publish on every commit to main ([@geofflamrock](https://github.com/geofflamrock))
+- Re-introduce pre-release versioning ([@geofflamrock](https://github.com/geofflamrock))
+- Change to use release label ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.6.6 (Sat Nov 23 2024)
 
 #### ⚠️ Pushed to `main`

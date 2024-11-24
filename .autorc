@@ -3,5 +3,5 @@
     "git-tag",
     "released"
   ],
-  "onlyPublishWithReleaseLabel": true
+  "onlyPublishWithReleaseLabel": false
 }
