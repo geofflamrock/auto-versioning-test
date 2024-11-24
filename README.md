@@ -14,3 +14,4 @@ Test
 Test
 Another bug fix
 A change without a label
+A new patch
