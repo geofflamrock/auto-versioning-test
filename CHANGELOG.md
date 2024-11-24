@@ -1,3 +1,15 @@
+# v0.8.5 (Sun Nov 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Put back automation label in ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.8.4 (Sun Nov 24 2024)
 
 #### ⚠️ Pushed to `main`
