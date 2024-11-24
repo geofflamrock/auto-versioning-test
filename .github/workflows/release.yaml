@@ -23,15 +23,41 @@ jobs:
           curl -kL -o - https://github.com/intuit/auto/releases/download/v11.3.0/auto-linux.gz | gunzip > ${{ runner.temp }}/auto
           chmod +x ${{ runner.temp }}/auto
 
-      - name: Test latest
-        run: ${{ runner.temp }}/auto shipit --dry-run --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com
-
       - name: Get next release version
         id: get_next_release_version
-        run: echo "version=$(${{ runner.temp }}/auto shipit --dry-run --quiet --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
+        run: echo "version=$(${{ runner.temp }}/auto latest --dry-run --quiet --no-version-prefix --name github-actions[bot] --email github-actions[bot]@users.noreply.github.com)" >> $GITHUB_OUTPUT
 
       - name: Print next release version
         run: echo "${{ steps.get_next_release_version.outputs.version }}"
+
+      - name: Get next release semver bump type
+        id: get_next_release_semver_bump_type
+        run: echo "bump_type=$(${{ runner.temp }}/auto version)" >> $GITHUB_OUTPUT
+
+      - name: Print next release semver bump type
+        run: echo "${{ steps.get_next_release_semver_bump_type.outputs.bump_type }}"
+
+      - name: Get next pre-release version for when next release version does not exist
+        id: get_next_pre_release_version
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"
+          version_format: "${major}.${minor}.${patch}"
+
+      - name: Get branch names
+        id: branch_names
+        uses: OctopusDeploy/util-actions/current-branch-name@current-branch-name.0.1.0
+
+      - name: Get pre-release version
+        id: get_pre_release_version
+        run: echo "version=${{ steps.get_next_release_version.outputs.version || steps.get_next_pre_release_version.outputs.version }}-${{ steps.branch_names.outputs.branch_name }}.${{ github.run_number }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
+
+      - name: Get version
+        id: get_version
+        run: echo "version=${{ github.ref_name == 'refs/heads/main' && steps.get_next_release_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+
+      - name: Print version
+        run: echo "Version ${{ steps.get_version.outputs.version }}"
 
   release:
     name: Release
