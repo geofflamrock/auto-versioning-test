@@ -3,5 +3,11 @@
     "git-tag",
     "released"
   ],
-  "onlyPublishWithReleaseLabel": false
+  "onlyPublishWithReleaseLabel": false,
+  "labels": [
+    {
+      "name": "internal",
+      "default": true
+    }
+  ]
 }
