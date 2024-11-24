@@ -25,7 +25,8 @@
       "changelogTitle": "🐛 Bug Fix",
       "description": "Increment the patch version when merged",
       "releaseType": "patch",
-      "color": "#870048"
+      "color": "#870048",
+      "default": true
     },
     {
       "name": "dependencies",
@@ -33,6 +34,12 @@
       "description": "Update one or more dependencies version",
       "releaseType": "patch",
       "color": "#8732bc"
+    },
+    {
+      "name": "release",
+      "description": "Create a release when this pr is merged",
+      "releaseType": "release",
+      "color": "#007f70"
     },
     {
       "name": "skip-release",
@@ -62,11 +69,10 @@
       "color": "#ffd3cc"
     },
     {
-      "name": "default",
+      "name": "automation",
       "changelogTitle": "",
-      "description": "Default label to apply when no other label has been applied",
-      "releaseType": "none",
-      "default": true
+      "description": "Change is part of automation",
+      "releaseType": "none"
     }
   ]
 }
