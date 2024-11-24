@@ -67,12 +67,6 @@
       "description": "Add or improve existing tests",
       "releaseType": "none",
       "color": "#ffd3cc"
-    },
-    {
-      "name": "automation",
-      "changelogTitle": "",
-      "description": "Change is part of automation",
-      "releaseType": "none"
     }
   ]
 }
