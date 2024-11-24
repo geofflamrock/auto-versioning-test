@@ -54,7 +54,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo "version=${{ github.ref_name == 'refs/heads/main' && steps.get_next_release_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ github.ref == 'refs/heads/main' && steps.get_next_release_semver_bump_type.outputs.bump_type != '' && steps.get_next_release_version.outputs.version || steps.get_pre_release_version.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Print version
         run: echo "Version ${{ steps.get_version.outputs.version }}"
