@@ -1,3 +1,19 @@
+# v0.9.0 (Mon Dec 02 2024)
+
+#### 🚀 New Feature
+
+- A new minor change [#41](https://github.com/geofflamrock/auto-versioning-test/pull/41) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### 🤖 Automation
+
+- Add in versioning PR again [#40](https://github.com/geofflamrock/auto-versioning-test/pull/40) ([@geofflamrock](https://github.com/geofflamrock))
+
+#### Authors: 1
+
+- Geoff Lamrock ([@geofflamrock](https://github.com/geofflamrock))
+
+---
+
 # v0.8.5 (Sun Nov 24 2024)
 
 #### ⚠️ Pushed to `main`
